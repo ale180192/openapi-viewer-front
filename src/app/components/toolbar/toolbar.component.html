@@ -1,0 +1,18 @@
+<mat-toolbar>
+    <div class="row">
+        <mat-toolbar-row>
+            <div class="col-md-6 title-toolbar"> 
+                <span>Open API</span>
+            </div>
+            <div class="col-md-6 menu-settings"> 
+                <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+                </button>
+                <mat-menu #appMenu="matMenu" yPosition="above">
+                    <button mat-menu-item>Settings</button>
+                    <button mat-menu-item>Help</button>
+                </mat-menu>
+            </div>
+        </mat-toolbar-row>
+    </div> 
+</mat-toolbar>
