@@ -8,12 +8,12 @@ import {ViewChild} from '@angular/core';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-  @ViewChild(MatMenuTrigger, {read: false, static: true}) trigger: MatMenuTrigger;
+  @ViewChild(MatMenuTrigger, {read: true, static: true}) trigger: MatMenuTrigger;
 
   constructor() { }
 
   ngOnInit() {
-    this.trigger.openMenu();
+    //this.trigger.openMenu();
   }
 
 }
