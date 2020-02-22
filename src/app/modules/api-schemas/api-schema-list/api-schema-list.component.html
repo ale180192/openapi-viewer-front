@@ -1,0 +1,16 @@
+<table mat-table [dataSource]="apis" class="mat-elevation-z8">
+    <!-- name column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <th mat-cell *matCellDef="let element"> {{element.name}} </th>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <th mat-cell *matCellDef="let element"> {{element.description}} </th>
+    </ng-container>
+
+    <!-- rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: './modules/login/login.module#LoginModule'
   },
   {
+    path: 'apis',
+    loadChildren: './modules/api-schemas/api-schemas.module#ApiSchemasModule'
+  },
+  {
     path: '**',
     redirectTo: 'login'
   }

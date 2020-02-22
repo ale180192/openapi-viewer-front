@@ -9,10 +9,10 @@
                         <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
                     </button>
                     <mat-menu #appMenu="matMenu" yPosition="above">
-                        <button mat-menu-item>Settings</button>
+                        <button mat-menu-item routerLink='/home' (click)='redirecSettings()'>Settings</button>
                         <button mat-menu-item>Help</button>
                     </mat-menu>
                 </div>
             </mat-toolbar-row>
     </mat-toolbar>
-</div> 
+</div>

@@ -5,9 +5,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 import { SignupComponent } from './signup/signup.component';
+import { SignoutComponent } from './signout/signout.component';
 
 
 const routes: Routes = [
+  {
+    path: 'signout',
+    component: SignoutComponent
+  },
   {
     path: '',
     component: SignupComponent

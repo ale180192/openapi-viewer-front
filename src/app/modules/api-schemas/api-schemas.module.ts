@@ -1,0 +1,18 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table'
+
+import { ApiSchemasRoutingModule } from './api-schemas-routing.module';
+import { ApiSchemaListComponent } from './api-schema-list/api-schema-list.component';
+import { ApiSchemaDetailComponent } from './api-schema-detail/api-schema-detail.component';
+
+
+@NgModule({
+  declarations: [ApiSchemaListComponent, ApiSchemaDetailComponent],
+  imports: [
+    CommonModule,
+    ApiSchemasRoutingModule,
+    MatTableModule
+  ]
+})
+export class ApiSchemasModule { }
