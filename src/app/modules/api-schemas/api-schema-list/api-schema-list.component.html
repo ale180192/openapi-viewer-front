@@ -1,16 +1,33 @@
-<table mat-table [dataSource]="apis" class="mat-elevation-z8">
-    <!-- name column -->
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <th mat-cell *matCellDef="let element"> {{element.name}} </th>
-    </ng-container>
+<div class="container search">
+    <div class="form-container">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Filter</mat-label>
+                <input matInput type="text" placeholder="Filter" (keyup)="applyFilter($event.target.value)">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
 
-    <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>Description</th>
-        <th mat-cell *matCellDef="let element"> {{element.description}} </th>
-    </ng-container>
+<div class="container mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort>
+        <!-- name column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+        </ng-container>
+    
+        <!-- rows -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-    <!-- rows -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    </mat-table>
+    <!-- paginator-->
+    <mat-paginator [pageSizeOptions]="[1, 10, 25, 100]"></mat-paginator>
+</div>

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 
 
-interface ApiSchema {
+export interface ApiSchema {
+  id: number;
   name: string;
   description: string;
 }
@@ -17,10 +18,12 @@ export class ApiSchemaListService {
   getAll(): ApiSchema[] {
     return [
       {
+        id: 1,
         name: 'api google',
         description: 'esta es la api de google'
       },
       {
+        id: 2,
         name: 'api de twitter',
         description: 'Esta es la api de twitter'
       }

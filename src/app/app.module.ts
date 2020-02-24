@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import {MatIconModule} from '@angular/material/icon';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-
 @NgModule({
   declarations: [
     AppComponent,

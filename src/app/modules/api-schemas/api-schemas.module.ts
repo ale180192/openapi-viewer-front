@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table'
+import { MatTableModule } from '@angular/material';
 
 import { ApiSchemasRoutingModule } from './api-schemas-routing.module';
 import { ApiSchemaListComponent } from './api-schema-list/api-schema-list.component';
@@ -12,7 +12,8 @@ import { ApiSchemaDetailComponent } from './api-schema-detail/api-schema-detail.
   imports: [
     CommonModule,
     ApiSchemasRoutingModule,
-    MatTableModule
-  ]
+    MatTableModule,
+  ],
+  exports: []
 })
 export class ApiSchemasModule { }
