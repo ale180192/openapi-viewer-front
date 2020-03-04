@@ -1,0 +1,22 @@
+<div class="container main-container">
+  <div class="container-submain">
+       <div class="logoo">
+           <span>openapi doc</span>
+       </div>
+       <div class="form-container">
+           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+             <div class="row form-label">Username or email address</div>
+             <div class="row">
+                     <input type="email" placeholder="User" formControlName="username">
+             </div>
+             <div class="row form-label">Password</div>
+             <div class="row">
+                     <input matInput type="password" placeholder="Password" formControlName="password">
+             </div>
+             <div class="row">
+                 <button type="submit">Ingresar</button>
+             </div>
+           </form>
+       </div>
+  </div>
+</div>
