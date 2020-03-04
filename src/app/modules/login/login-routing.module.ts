@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { SignupComponent } from './signup/signup.component';
 import { SignoutComponent } from './signout/signout.component';
+import { SignupAngularComponent } from './signup-angular/signup-angular.component';
 
 
 const routes: Routes = [
@@ -14,8 +15,8 @@ const routes: Routes = [
     component: SignoutComponent
   },
   {
-    path: '',
-    component: SignupComponent
+    path: 'signup-angular',
+    component: SignupAngularComponent
   }
 ];
 
