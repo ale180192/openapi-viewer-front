@@ -4,3 +4,11 @@
   justify-content: center;
   height: 100vh;
 }
+
+.form-error {
+  display: inline-block;
+}
+
+.ng-valid {
+  border-left: 5px solid #42A948; /* green */
+}

@@ -12,8 +12,12 @@ const routes: Routes = [
     loadChildren: './modules/api-schemas/api-schemas.module#ApiSchemasModule'
   },
   {
+    path: 'examples',
+    loadChildren: './modules/examples/examples.module#ExamplesModule'
+  },
+  {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: 'examples'
   }
 ];
 

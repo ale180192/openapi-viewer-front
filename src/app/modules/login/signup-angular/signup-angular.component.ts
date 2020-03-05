@@ -8,8 +8,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SignupAngularComponent implements OnInit {
   loginForm = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required]
+    username: ['', [Validators.required, Validators.minLength(3), Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(3)] ]
   });
 
   constructor( private fb: FormBuilder ) {
@@ -29,5 +29,12 @@ export class SignupAngularComponent implements OnInit {
     });
   }
 
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
 
 }
