@@ -1,8 +1,16 @@
 <div>
+  <h2>Component parent</h2>
+  <label for="">Title children</label>
+  <input type="text" [(ngModel)]="titleChildren">
+  <h5>get children data by local variable #createUser(form's status) </h5>
+  <p>{{userCreate.userForm.status}}</p>
+  <ul>
+    <li *ngFor="let user of users">
+      {{ user.name }}
+    </li>
+  </ul>
   <div>
-    <app-user-create></app-user-create>
-  </div>
-  <div>
-    <app-user-list></app-user-list>
+    <h4>Component children</h4>
+    <app-user-create (userAdded)="addUser($event)" [title]="titleChildren" #userCreate></app-user-create>
   </div>
 </div>

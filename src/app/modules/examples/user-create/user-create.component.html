@@ -1,6 +1,7 @@
 
 <div>
-  <form [formGroup]="userForm" (ngSubmit)="submit()">
+  <h4>{{title}}</h4>
+  <form [formGroup]="userForm" (ngSubmit)="addedUser()">
     <label for="">User:</label>
     <input type="text" formControlName="name" required>
     <br>

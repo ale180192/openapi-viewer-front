@@ -1,6 +1,8 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { EventEmitter } from 'protractor';
+import { EventEmitter } from '@angular/core';
+import { User } from '../user.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-create',
@@ -8,8 +10,8 @@ import { EventEmitter } from 'protractor';
   styleUrls: ['./user-create.component.scss']
 })
 export class UserCreateComponent implements OnInit {
-  //@Output() user = new EventEmitter();
-
+  @Output() userAdded = new EventEmitter<boolean>();
+  @Input() title: string;
   constructor( private fb: FormBuilder ) { }
   userForm = this.fb.group({
     name: ['', Validators.required]
@@ -19,6 +21,11 @@ export class UserCreateComponent implements OnInit {
 
   submit() {
     console.log('call submit', this.userForm.value);
+  }
+
+  addedUser() {
+    this.userAdded.emit(this.userForm.value);
+    console.log('call to addedUser on component create user');
   }
 
 }
