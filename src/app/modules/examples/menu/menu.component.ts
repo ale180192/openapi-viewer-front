@@ -14,6 +14,9 @@ export class MenuComponent implements OnInit {
     }, {
       path: 'components-comunication',
       name: 'Components comunication'
+    }, {
+      path: 'rxjs',
+      name: 'Components comunication using rxjs'
     }
   ];
   constructor() { }
