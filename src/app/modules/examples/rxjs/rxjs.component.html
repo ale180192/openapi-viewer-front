@@ -1,0 +1,15 @@
+<div>
+  <h2>Component parent</h2>
+  <label for="">Title children</label>
+  <input type="text" [(ngModel)]="titleChildren">
+  <div>
+    <h4>Component children - users list</h4>
+    <h6>get children data by local variable #createUser(form's status) </h6>
+    <p>{{ userCreate.userForm.status }}</p>
+    <app-user-list-rxjs></app-user-list-rxjs>
+  </div>
+  <div>
+    <h4>Component children - users create</h4>
+    <app-user-create-rxjs [title]="titleChildren" #userCreate></app-user-create-rxjs>
+  </div>
+</div>

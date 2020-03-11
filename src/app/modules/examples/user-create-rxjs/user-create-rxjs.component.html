@@ -1,0 +1,10 @@
+
+<div>
+  <h6>title:  {{title}}</h6>
+  <form [formGroup]="userForm" (ngSubmit)="addedUser()">
+    <label for="">User:</label>
+    <input type="text" formControlName="name" required>
+    <br>
+    <button type="submit" [disabled]="userForm.status == 'INVALID'">add</button>
+  </form>
+</div>

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class LoginComponent implements OnInit {
   loginForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required]
@@ -22,12 +22,5 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     console.log('Login\'s data', this.loginForm.value);
   }
-
-  fillForm() {
-    this.loginForm.patchValue({
-      username: 'new username'
-    });
-  }
-
 
 }

@@ -24,12 +24,14 @@
                   </mat-form-field>
               </div>
               <div class="row">
-                  <button type="submit">Ingresar</button>
+                  <div class="col-6">
+                    <a routerLink="/login/signup">signup</a>
+                  </div>
+                  <div class="col-6">
+                    <button mat-button type="submit">Login</button>
+                  </div>
               </div>
             </form>
         </div>
-        <button (click)="fillForm()">fill form</button>
-        <p>{{loginForm}}</p>
-        <p></p>
    </div>
 </div>
