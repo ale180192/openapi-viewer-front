@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatButtonModule } from '@angular/material/button';
 
 import { ApiSchemaListComponent } from './api-schema-list/api-schema-list.component';
 import { ApiSchemaDetailComponent } from './api-schema-detail/api-schema-detail.component';
@@ -16,13 +17,21 @@ const routes: Routes = [
     component: ApiSchemaListComponent
   },
   {
-    path: ':id',
+    path: 'detail/:id',
     component: ApiSchemaDetailComponent
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSortModule]
+  exports: [
+            RouterModule,
+            MatFormFieldModule,
+            MatIconModule,
+            MatInputModule,
+            MatPaginatorModule,
+            MatSortModule,
+            MatButtonModule,
+          ]
 })
 export class ApiSchemasRoutingModule { }

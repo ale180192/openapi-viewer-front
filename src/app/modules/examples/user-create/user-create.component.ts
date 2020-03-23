@@ -1,8 +1,6 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
-import { User } from '../user.model';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-create',

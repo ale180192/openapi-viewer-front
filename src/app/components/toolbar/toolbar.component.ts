@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatMenuTrigger} from '@angular/material/menu';
 import {ViewChild} from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',

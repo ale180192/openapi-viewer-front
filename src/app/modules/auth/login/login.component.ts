@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor( private fb: FormBuilder ) {
+  constructor( private fb: FormBuilder, private router: Router ) {
 
   }
 
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log('Login\'s data', this.loginForm.value);
+    this.router.navigate(['/apis/list']);
   }
 
 }
