@@ -9,21 +9,12 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./speed-dial-fab.component.scss'],
   animations: speedDialFabAnimations
 })
-export class SpeedDialFabComponent implements OnInit, OnChanges {
+export class SpeedDialFabComponent {
   @Input() fabButtons: FabButton[];
   @Output() actionClick = new EventEmitter<FabButton>();
 
   buttons = [];
   fabTogglerState = 'inactive';
-
-  ngOnInit() {
-    console.log('on init, fabuttons is', this.fabButtons);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('component changed');
-    console.log(SimpleChange);
-  }
 
   showItems() {
     this.fabTogglerState = 'active';
@@ -40,7 +31,6 @@ export class SpeedDialFabComponent implements OnInit, OnChanges {
   }
 
   actionSelected(fabButton: FabButton) {
-    console.log('emmit from speeddialfab', fabButton);
     this.actionClick.emit(fabButton);
   }
 

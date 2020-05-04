@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ApiSchemaService } from '../api-schema.service';
@@ -13,37 +13,47 @@ import { ApiSchemaDetailComponent } from '../api-schema-detail/api-schema-detail
   templateUrl: './api-schema-list.component.html',
   styleUrls: ['./api-schema-list.component.scss']
 })
-export class ApiSchemaListComponent implements OnInit, OnDestroy {
+export class ApiSchemaListComponent implements OnInit, AfterViewInit, OnDestroy {
   dataSource: MatTableDataSource<ApiSchema>;
   displayedColumns: string[] = ['name', 'description', 'id'];
   data: ApiSchema[];
   isLoading: boolean;
   fabButtons: FabButton [] = [{icon: 'add', actionName: 'New api schema'}];
   private apiSchemaSubscription: Subscription;
-  @ViewChild(MatPaginator, {read: true, static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {read: true, static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {read: false, static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {read: false, static: false}) sort: MatSort;
 
   constructor( private apiSchemaService: ApiSchemaService, private router: Router, private dialog: MatDialog ) {
     this.apiSchemaSubscription = apiSchemaService.getApiSchemaListener().subscribe( apiSchemaList => {
       this.data = apiSchemaList;
+      console.log('on updated', this.data);
+      this.refresh();
     } );
    }
 
-  ngOnInit() {
-    this.renderTable();
-    console.log('fab is ', this.fabButtons);
+  async ngOnInit() {
+    this.data = await this.apiSchemaService.getAll();
+    console.log('data on list is ', this.data);
+    this.renderTable(this.data);
+  }
+
+  ngAfterViewInit(): void {
+    console.log('afterviewinit');
   }
 
   ngOnDestroy(): void {
     this.apiSchemaSubscription.unsubscribe();
   }
 
-  renderTable() {
-    this.dataSource = new MatTableDataSource();
-    this.dataSource.data = this.data;
+  renderTable(data) {
+    this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.isLoading = false;
+  }
+
+  refresh() {
+    this.dataSource.data = this.data;
   }
 
   applyFilter(filterValue: string) {
@@ -61,7 +71,6 @@ export class ApiSchemaListComponent implements OnInit, OnDestroy {
     console.log('add service');
     console.log(apiSchema);
     this.apiSchemaService.add(apiSchema);
-    this.renderTable();
   }
 
   fabButtonActionClick(action: FabButton) {
@@ -89,7 +98,6 @@ export class ApiSchemaListComponent implements OnInit, OnDestroy {
         case 'create': {
           console.log('on list element. create');
           console.log(result.event, result.data);
-          result.data.id = 2;
           this.add(result.data);
           break;
         }

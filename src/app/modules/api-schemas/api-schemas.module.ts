@@ -7,6 +7,8 @@ import { ApiSchemaListComponent } from './api-schema-list/api-schema-list.compon
 import { ApiSchemaDetailComponent } from './api-schema-detail/api-schema-detail.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
