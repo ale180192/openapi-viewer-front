@@ -58,7 +58,10 @@ export class ApiSchemaListComponent implements OnInit, OnDestroy {
   }
 
   add(apiSchema: ApiSchema) {
+    console.log('add service');
+    console.log(apiSchema);
     this.apiSchemaService.add(apiSchema);
+    this.renderTable();
   }
 
   fabButtonActionClick(action: FabButton) {
@@ -85,7 +88,9 @@ export class ApiSchemaListComponent implements OnInit, OnDestroy {
         }
         case 'create': {
           console.log('on list element. create');
-          console.log(result.action, result.data);
+          console.log(result.event, result.data);
+          result.data.id = 2;
+          this.add(result.data);
           break;
         }
       }
