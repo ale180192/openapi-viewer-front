@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ApiSchemaService } from '../api-schema.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -23,7 +23,7 @@ export class ApiSchemaListComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, {read: true, static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {read: true, static: true}) sort: MatSort;
 
-  constructor( private apiSchemaService: ApiSchemaService, private router: Router ) {
+  constructor( private apiSchemaService: ApiSchemaService, private router: Router, private dialog: MatDialog ) {
     this.apiSchemaSubscription = apiSchemaService.getApiSchemaListener().subscribe( apiSchemaList => {
       this.data = apiSchemaList;
     } );
@@ -72,8 +72,23 @@ export class ApiSchemaListComponent implements OnInit, OnDestroy {
 
   openDialog() {
     const dialogRef = this.dialog.open(ApiSchemaDetailComponent, {
-      width: '250px',
-      data:obj
+      width: '400px',
+      data: []
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('call afterclose on list');
+      console.log(result);
+      switch ( result.event ) {
+        case 'cancel': {
+          console.log('on list element. cancel');
+          break;
+        }
+        case 'create': {
+          console.log('on list element. create');
+          console.log(result.action, result.data);
+          break;
+        }
+      }
     });
   }
 }

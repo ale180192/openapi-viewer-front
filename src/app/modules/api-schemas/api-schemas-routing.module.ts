@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { ApiSchemaListComponent } from './api-schema-list/api-schema-list.component';
 import { ApiSchemaDetailComponent } from './api-schema-detail/api-schema-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   exports: [
             RouterModule,
             MatFormFieldModule,
+            ReactiveFormsModule,
             MatIconModule,
             MatInputModule,
             MatPaginatorModule,
