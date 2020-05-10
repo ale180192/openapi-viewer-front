@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ApiSchema } from './api-schema.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Params } from '@angular/router';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -9,25 +11,25 @@ import { HttpClient } from '@angular/common/http';
 export class ApiSchemaService {
   private data: ApiSchema[] = [];
   private baseUrl = 'http://localhost:8000';
-  apiSchemaUpdated = new Subject<ApiSchema []>();
+  apiSchemaUpdated = new Subject<{ results: ApiSchema[], count: number }>();
 
-  constructor(private client: HttpClient) {
-    this.client.get(`${this.baseUrl}/api/v1/apisfake`).subscribe( (response: any) => {
-      console.log('on construct is ', response);
-      this.data = response;
-    });
-  }
+  constructor(private client: HttpClient) {}
 
   getApiSchemaListener() {
     return this.apiSchemaUpdated.asObservable();
   }
 
-  getAll(): any {
-    return new Promise( resolve => {
-      this.client.get(`${this.baseUrl}/api/v1/apisfake`).subscribe( response => {
-        console.log('response is ', response);
-        resolve(response);
-      });
+  get(itemsPerPage: number, currentPage: number) {
+    const queryParams = `?pagesize=${itemsPerPage}&page=${currentPage}`;
+    this.client.get<{ message: string; items: any; maxItems: number }>(
+                `${this.baseUrl}/api/v1/apisfake-pagination` + queryParams
+              ).subscribe( (response: any) => {
+                console.log('response is ', response);
+                this.data = response.results;
+                this.apiSchemaUpdated.next({
+                  results: [...this.data],
+                  count: response.count
+                });
     });
   }
 
@@ -41,12 +43,20 @@ export class ApiSchemaService {
 
   add(apiSchema: ApiSchema) {
     // TODO: handler status codes of the response
-    this.data.push(apiSchema);
-    this.client.post(`${this.baseUrl}/api/v1/apisfake`, apiSchema).subscribe(response => {
+    this.client.post(`${this.baseUrl}/api/v1/apisfake`, apiSchema).subscribe((response: any) => {
       console.log('Response server is');
       console.log(response);
+      this.data.push(apiSchema);
+      this.apiSchemaUpdated.next({ results: [...this.data], count: response.total });
     });
-    this.apiSchemaUpdated.next([...this.data]);
+  }
+
+  delete(id: number) {
+    return new Promise( (resolve, reject) => {
+      this.client.delete(`${this.baseUrl}/api/v1/apisfake/${id}`).subscribe(response =>  {
+        resolve(true);
+      });
+    });
   }
 
 }

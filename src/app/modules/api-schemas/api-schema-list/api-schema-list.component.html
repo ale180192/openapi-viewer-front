@@ -24,7 +24,7 @@
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef class="action-link">Action</mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+              <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="delete(element.id)">
                 <mat-icon>delete</mat-icon>
               </button>
               <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon" (click)="edit(element.id)">
@@ -39,6 +39,8 @@
 
     </mat-table>
     <!-- paginator-->
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" [pageSizeOptions]="pageSizeOptions"
+                    (page)="onChangedPage($event)" *ngIf="data.length > 0"></mat-paginator>
+    <p class="info-text mat-body-1" *ngIf="data.length <= 0 && !isLoading">No posts added yet!</p>
 </div>
 <app-speed-dial-fab [fabButtons]="fabButtons" (actionClick)="fabButtonActionClick($event)"></app-speed-dial-fab>
