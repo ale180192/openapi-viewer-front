@@ -39,8 +39,10 @@
 
     </mat-table>
     <!-- paginator-->
-    <mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" [pageSizeOptions]="pageSizeOptions"
-                    (page)="onChangedPage($event)" *ngIf="data.length > 0"></mat-paginator>
+    <ng-container *ngIf="data.length > 0">
+      <mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" [pageSizeOptions]="pageSizeOptions"
+                    (page)="onChangedPage($event)"></mat-paginator>
+    </ng-container>
     <p class="info-text mat-body-1" *ngIf="data.length <= 0 && !isLoading">No posts added yet!</p>
 </div>
 <app-speed-dial-fab [fabButtons]="fabButtons" (actionClick)="fabButtonActionClick($event)"></app-speed-dial-fab>

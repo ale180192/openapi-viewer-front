@@ -43,20 +43,11 @@ export class ApiSchemaService {
 
   add(apiSchema: ApiSchema) {
     // TODO: handler status codes of the response
-    this.client.post(`${this.baseUrl}/api/v1/apisfake`, apiSchema).subscribe((response: any) => {
-      console.log('Response server is');
-      console.log(response);
-      this.data.push(apiSchema);
-      this.apiSchemaUpdated.next({ results: [...this.data], count: response.total });
-    });
+    return this.client.post(`${this.baseUrl}/api/v1/apisfake`, apiSchema);
   }
 
   delete(id: number) {
-    return new Promise( (resolve, reject) => {
-      this.client.delete(`${this.baseUrl}/api/v1/apisfake/${id}`).subscribe(response =>  {
-        resolve(true);
-      });
-    });
+    return this.client.delete(`${this.baseUrl}/api/v1/apisfake/${id}`);
   }
 
 }

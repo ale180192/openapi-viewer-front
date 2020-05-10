@@ -40,11 +40,21 @@ export class ApiSchemaListComponent implements OnInit, AfterViewInit, OnDestroy 
 
   async ngOnInit() {
     this.apiSchemaService.get(this.itemsPerPage, this.currentPage);
+    this.renderTable(this.data);
+    console.log('paginator on init', this.paginator);
   }
 
   ngAfterViewInit(): void {
     console.log('afterviewinit');
+    this.renderTable(this.data);
+
   }
+
+  // ngAfterViewChecked(): void {
+  //   console.log('ngAfterViewChecked');
+  //   this.renderTable(this.data);
+
+  // }
 
   ngOnDestroy(): void {
     this.apiSchemaSubscription.unsubscribe();
@@ -52,6 +62,8 @@ export class ApiSchemaListComponent implements OnInit, AfterViewInit, OnDestroy 
 
   renderTable(data) {
     this.dataSource = new MatTableDataSource(data);
+    console.log('paginator on render table', this.paginator);
+
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.isLoading = false;
@@ -84,16 +96,18 @@ export class ApiSchemaListComponent implements OnInit, AfterViewInit, OnDestroy 
   add(apiSchema: ApiSchema) {
     console.log('add service');
     console.log(apiSchema);
-    this.apiSchemaService.add(apiSchema);
+    this.apiSchemaService.add(apiSchema).subscribe( response => {
+      this.apiSchemaService.get(this.itemsPerPage, this.currentPage);
+    } );
   }
 
-  async delete(id: number) {
+  delete(id: number) {
+    // TODO: FIX to delete the only element of the last page, the request fail because the querystring are wrong,
+    // the server response us a 404 status code
     console.log('click on delete', id);
-    this.apiSchemaService.delete(id);
-    this.apiSchemaService.get(this.itemsPerPage, this.currentPage);
-    this.apiSchemaService.get(this.itemsPerPage, this.currentPage);
-    console.log('data on list is ', this.data);
-    this.renderTable(this.data);
+    this.apiSchemaService.delete(id).subscribe( response => {
+      this.apiSchemaService.get(this.itemsPerPage, this.currentPage);
+    });
   }
 
   fabButtonActionClick(action: FabButton) {
