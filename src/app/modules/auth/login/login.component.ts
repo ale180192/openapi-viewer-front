@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.isLoading = true;
     console.log('Login\'s data', this.loginForm.value);
+    this.isLoading = true;
     if (this.loginForm.invalid) {
       return;
     }
