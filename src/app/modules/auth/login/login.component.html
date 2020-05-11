@@ -1,7 +1,11 @@
 <div class="container main-container">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
    <div class="container-submain">
         <div class="logoo">
             <span>openapi doc</span>
+        </div>
+        <div class="row error-auth" *ngIf="isAuthenticated">
+          <mat-error >Bad credentials</mat-error>
         </div>
         <div class="form-container">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">

@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { SignoutComponent } from './signout/signout.component';
 import { SignupAngularComponent } from './signup-angular/signup-angular.component';
 import { SignupComponent } from './signup/signup.component';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SignupComponent } from './signup/signup.component';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AuthModule { }
