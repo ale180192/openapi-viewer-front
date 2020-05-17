@@ -16,3 +16,4 @@ COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
 # docker ps
 # docker container stop 3426914376a2
 # docker container rm 3426914376a2
+# docker container rm 3426914376a2
