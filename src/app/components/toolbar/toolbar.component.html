@@ -9,7 +9,7 @@
           <mat-icon aria-hidden="false" aria-label="Example home icon">menu</mat-icon>
         </button>
         <mat-menu #appMenu="matMenu" yPosition="above">
-          <button mat-menu-item routerLink='/home' (click)='redirecSettings()'>Settings</button>
+          <button mat-menu-item routerLink='/home' >Settings</button>
           <button *ngIf="isAuth" mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
       </div>
