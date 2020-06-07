@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
 import { Auth } from './auth.model';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({providedIn: "root"})
 export class AuthService {
-  private baseUrl = 'http://localhost:8000'; // TODO: this snippet code required refactor
+  private baseUrl = environment.api_url;
   private isAuthenticated = false;
   private token: string;
   private tokenTimer: any;

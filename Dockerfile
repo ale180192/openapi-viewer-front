@@ -11,10 +11,11 @@ EXPOSE 80
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
 
-# docker build --rm -t openapi-front-v1 .
+# docker build --rm -t openapi-front:latest .
+# docker tag openapi-front:latest alejandro180192/openapi-front:latest
+# docker push alejandro180192/openapi-front:latest
 # docker run -d -p 4200:80 --name openapi-front-v1 openapi-front-v1
 # docker exec -it ID-CONTAINER ls /usr/share/nginx/html
 # docker ps
 # docker container stop 3426914376a2
-# docker container rm 3426914376a2
 # docker container rm 3426914376a2

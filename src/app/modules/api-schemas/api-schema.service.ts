@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { ApiSchema } from './api-schema.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Params } from '@angular/router';
-import { stringify } from 'querystring';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiSchemaService {
   private data: ApiSchema[] = [];
-  private baseUrl = 'http://localhost:8000';
+  private baseUrl =   environment.api_url;
   apiSchemaUpdated = new Subject<{ results: ApiSchema[], count: number }>();
 
   constructor(private client: HttpClient) {}
