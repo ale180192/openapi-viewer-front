@@ -27,7 +27,18 @@ build:
 
 deploy_kubernetes:
   stage: deploy
+  image: alpine:3.7
+  environment:
+    name: ${CI_COMMIT_REF_SLUG}
+    url: http://${CI_COMMIT_REF_SLUG}-${CI_PROJECT_PATH_SLUG}.tudominio.org
   script:
-    - echo 'deploy k8s'
+    - apk update  && apk add --no-cache curl grep
+    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
+    - mkdir -p ${HOME}/.kube
+    - echo $kube_config |base64 -d > $KUBECONFIG
+    - kubectl version
     - kubectl get services -o wide
+  tags:
+    - docker
 
