@@ -9,6 +9,10 @@ variables:
   IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   DOCKER_TLS_CERTDIR: ""
 
+stages:
+  - build
+  - deploy
+
 before_script:
   - docker info
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
@@ -22,7 +26,7 @@ build:
     - docker push "${IMAGE_TAG}"
 
 deploy_kubernetes:
-  stage: deploy_k8s
+  stage: deploy
   script:
     - echo 'deploy k8s'
     - kubectl get services -o wide
