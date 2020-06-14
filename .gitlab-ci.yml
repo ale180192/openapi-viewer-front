@@ -36,6 +36,7 @@ deploy_kubernetes:
     - mkdir -p ${HOME}/.kube
     - echo $KUBECONFIG
     - cat ${KUBECONFIG} > $HOME/.kube/config
+    - cat $HOME/.kube/config
     - kubectl config view
     - kubectl version
     - kubectl get services -o wide
