@@ -33,6 +33,7 @@ deploy_kubernetes:
     - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
     - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
     - mkdir -p ${HOME}/.kube
+    - echo $KUBECONFIG
     - echo $kube_config |base64 -d > $KUBECONFIG
     - kubectl version
     - kubectl get services -o wide
