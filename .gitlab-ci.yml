@@ -39,6 +39,6 @@ deploy_kubernetes:
     - cat $HOME/.kube/config
     - kubectl config view
     - kubectl version
-    - kubectl get services -o wide
+    - kubectl get services -n kube-system -o wide
 
 
