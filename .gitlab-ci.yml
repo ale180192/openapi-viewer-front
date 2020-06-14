@@ -38,7 +38,5 @@ deploy_kubernetes:
     - echo $kube_config |base64 -d > $KUBECONFIG
     - kubectl version
     - kubectl get services -o wide
-  tags:
-    - docker
 
 
